@@ -56,16 +56,15 @@ control_df = [
     {"ID": 28, "Age_Control": 40, "Race_Control": "C", "Smoker_Control": "N", "Propensity_Score_Control": 0.46}
 ]
 
-# Convert lists to DataFrames
 welder_df = pd.DataFrame(welder_df)
 control_df = pd.DataFrame(control_df)
 
 combined_df = pd.concat([control_df, welder_df])
 
-# Sort by both control and welder propensity scores
+# Sort by control and welder propensity scores
 combined_df.sort_values(by=['Propensity_Score_Control', 'Propensity_Score_Welder'], inplace=True)
 
-# Shuffle the rows to perform random matching
+# Shuffle  rows to perform matching random
 combined_df_shuffled = shuffle(combined_df, random_state=42)
 
 matched_pairs = []
